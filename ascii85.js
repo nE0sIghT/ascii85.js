@@ -23,7 +23,7 @@
 
 'use strict';
 
-var ascii85 = (function () {
+let ascii85 = (function () {
     const LINE_WIDTH = 80;
     const TUPLE_BITS = [24, 16, 8, 0];
     const POW_85_4 = [
@@ -35,7 +35,7 @@ var ascii85 = (function () {
     ];
 
     function getEncodedChunk(tuple, bytes = 4) {
-        var output;
+        let output;
         let d = ((tuple[0] << 24) | (tuple[1] << 16) | (tuple[2] << 8) | tuple[3]) >>> 0;
 
         if (d === 0 && bytes == 4) {
@@ -206,6 +206,6 @@ var ascii85 = (function () {
     }
 })();
 
-var base85 = ascii85;
+let base85 = ascii85;
 if (typeof module != 'undefined' && module.exports) module.exports = ascii85;
 
