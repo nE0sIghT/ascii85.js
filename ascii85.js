@@ -153,7 +153,7 @@ const ascii85 = (function () {
             switch (charCode) {
                 case 0x7a: // z
                     if (tupleIndex !== 0) {
-                        throw new Exception("Unexpected 'z' character at position " + i);
+                        throw new Error("Unexpected 'z' character at position " + i);
                     }
 
                     for (let j = 0; j < 4; j++) {
@@ -168,7 +168,7 @@ const ascii85 = (function () {
                     }
 
                     if (nextChar !== ">") {
-                        throw new Exception("Broken EOD at position " + j);
+                        throw new Error("Broken EOD at position " + j);
                     }
 
                     if (tupleIndex) {
@@ -180,7 +180,7 @@ const ascii85 = (function () {
                     break;
                 default:
                     if (charCode < 0x21 || charCode > 0x75) {
-                        throw new Exception("Unexpected character with code " + charCode + " at position " + i);
+                        throw new Error("Unexpected character with code " + charCode + " at position " + i);
                     }
 
                     tuple += (charCode - 0x21) * POW_85_4[tupleIndex++];
