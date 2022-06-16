@@ -198,10 +198,10 @@ const ascii85 = (function () {
     }
 
     return {
-        fromByteArray: fromByteArray,
-        toByteArray: toByteArray,
-        encode: encode,
-        decode: decode
+        fromByteArray,
+        toByteArray,
+        encode,
+        decode
     }
 })();
 
