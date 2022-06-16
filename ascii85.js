@@ -97,23 +97,8 @@ const ascii85 = (function () {
         return String.fromCharCode.apply(null, output);
     }
 
-    function encode(text) {
-        let charset = "UTF-8";
-        let useEOD = true;
-
-        if (arguments.length > 1) {
-            if (typeof (arguments[1]) == "string") {
-                charset = arguments[1];
-
-                if (arguments.length > 2) {
-                    useEOD = !!arguments[2];
-                }
-            } else {
-                useEOD = !!arguments[1];
-            }
-        }
-
-        return fromByteArray(new TextEncoder(charset || "UTF-8").encode(text), useEOD);
+    function encode(text, useEOD = true) {
+        return fromByteArray(new TextEncoder().encode(text), useEOD);
     }
 
     function getByteArrayPart(tuple, bytes = 4) {
@@ -193,8 +178,8 @@ const ascii85 = (function () {
         return new Uint8Array(output);
     }
 
-    function decode(text, charset) {
-        return new TextDecoder(charset || "UTF-8").decode(toByteArray(text));
+    function decode(text) {
+        return new TextDecoder().decode(toByteArray(text));
     }
 
     return {
