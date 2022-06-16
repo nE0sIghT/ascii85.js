@@ -145,8 +145,9 @@ let ascii85 = (function () {
         let i = text.startsWith("<~") && text.length > 2 ? 2 : 0;
         do {
             // Skip whitespace
-            if (text.charAt(i).trim().length === 0)
+            if (text.charAt(i).trim().length === 0) {
                 continue;
+            }
 
             let charCode = text.charCodeAt(i);
 
@@ -206,6 +207,6 @@ let ascii85 = (function () {
     }
 })();
 
-let base85 = ascii85;
-if (typeof module !== "undefined" && module.exports) module.exports = ascii85;
-
+if (typeof module !== "undefined" && module.exports) {
+    module.exports = ascii85;
+}
