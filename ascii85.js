@@ -38,7 +38,7 @@ let ascii85 = (function () {
         let output;
         let d = ((tuple[0] << 24) | (tuple[1] << 16) | (tuple[2] << 8) | tuple[3]) >>> 0;
 
-        if (d === 0 && bytes == 4) {
+        if (d === 0 && bytes === 4) {
             output = new Uint8Array(1);
             output[0] = 0x7a; // z
         } else {
@@ -152,7 +152,7 @@ let ascii85 = (function () {
 
             switch (charCode) {
                 case 0x7a: // z
-                    if (tupleIndex != 0) {
+                    if (tupleIndex !== 0) {
                         throw new Exception("Unexpected 'z' character at position " + i);
                     }
 
@@ -163,11 +163,11 @@ let ascii85 = (function () {
                 case 0x7e: // ~
                     let nextChar = "";
                     let j = i + 1;
-                    while (j < text.length && nextChar.trim().length == 0) {
+                    while (j < text.length && nextChar.trim().length === 0) {
                         nextChar = text.charAt(j++);
                     }
 
-                    if (nextChar != ">") {
+                    if (nextChar !== ">") {
                         throw new Exception("Broken EOD at position " + j);
                     }
 
@@ -207,5 +207,5 @@ let ascii85 = (function () {
 })();
 
 let base85 = ascii85;
-if (typeof module != "undefined" && module.exports) module.exports = ascii85;
+if (typeof module !== "undefined" && module.exports) module.exports = ascii85;
 
