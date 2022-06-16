@@ -21,8 +21,8 @@ console.log("[fixed]", wikiExampleOutput === encodedFixed); // true
 
 console.log("[enc-dec]", wikiExampleInput === base85.decode(base85.encode(wikiExampleInput))); // true
 
-// const long = "a".repeat(100000);
-// console.log("[enc-dec][long]", long === base85.decode(base85.encode(long))); // RangeError: Maximum call stack size exceeded
+const long = "a".repeat(1000000);
+console.log("[enc-dec][long]", long === base85.decode(base85.encode(long))); // RangeError: Maximum call stack size exceeded
 
 
 let byteString = "";

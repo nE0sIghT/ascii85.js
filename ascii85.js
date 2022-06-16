@@ -23,7 +23,7 @@
 
 "use strict";
 
-const ascii85 = (function () {
+const ascii85 = (function() {
     const LINE_WIDTH = 80;
     const TUPLE_BITS = [24, 16, 8, 0];
     const POW_85_4 = [
@@ -94,7 +94,11 @@ const ascii85 = (function () {
             output.push(0x3e); // >
         }
 
-        return String.fromCharCode.apply(null, output);
+        return arrayBufferToBinaryString(output);
+    }
+
+    function arrayBufferToBinaryString(arrayBuffer) {
+        return arrayBuffer.reduce((accumulator, byte) => accumulator + String.fromCharCode(byte), "");
     }
 
     function encode(text, useEOD = true) {
