@@ -48,7 +48,6 @@ let ascii85 = (function () {
                 if (i <= bytes) {
                     output[i] = d % 85 + 0x21; // 0x21 = "!"
                 }
-
                 d /= 85;
             }
         }
@@ -189,8 +188,7 @@ let ascii85 = (function () {
                         pushPart();
                     }
             }
-        }
-        while (i++ < text.length && !stop)
+        } while (i++ < text.length && !stop)
 
         return new Uint8Array(output);
     }
