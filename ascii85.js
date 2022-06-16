@@ -21,7 +21,7 @@
     SOFTWARE.
  */
 
-'use strict';
+"use strict";
 
 let ascii85 = (function () {
     const LINE_WIDTH = 80;
@@ -46,7 +46,7 @@ let ascii85 = (function () {
 
             for (let i = 4; i >= 0; i--) {
                 if (i <= bytes) {
-                    output[i] = d % 85 + 0x21; // 0x21 = '!'
+                    output[i] = d % 85 + 0x21; // 0x21 = "!"
                 }
 
                 d /= 85;
@@ -99,11 +99,11 @@ let ascii85 = (function () {
     }
 
     function encode(text) {
-        let charset = 'UTF-8';
+        let charset = "UTF-8";
         let useEOD = true;
 
         if (arguments.length > 1) {
-            if (typeof (arguments[1]) == 'string') {
+            if (typeof (arguments[1]) == "string") {
                 charset = arguments[1];
 
                 if (arguments.length > 2) {
@@ -161,13 +161,13 @@ let ascii85 = (function () {
                     }
                     break;
                 case 0x7e: // ~
-                    let nextChar = '';
+                    let nextChar = "";
                     let j = i + 1;
                     while (j < text.length && nextChar.trim().length == 0) {
                         nextChar = text.charAt(j++);
                     }
 
-                    if (nextChar != '>') {
+                    if (nextChar != ">") {
                         throw new Exception("Broken EOD at position " + j);
                     }
 
@@ -207,5 +207,5 @@ let ascii85 = (function () {
 })();
 
 let base85 = ascii85;
-if (typeof module != 'undefined' && module.exports) module.exports = ascii85;
+if (typeof module != "undefined" && module.exports) module.exports = ascii85;
 
