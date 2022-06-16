@@ -30,3 +30,10 @@ for (let i = 0; i < 256; i++) {
     byteString += String.fromCharCode(i);
 }
 console.log("[enc-dec-bs]", byteString === base85.decode(base85.encode(byteString)));
+
+
+const dataUrl = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA+SURBVEhL7dIxCgAwCMVQ739pu/yh0JYgXfNWlSxWv9UhgwkDyAAygAygXEo/8k032dhkMGEAGUAGkAHQvQC3veR+Ql0lAQAAAABJRU5ErkJggg==`;
+const base64ImageData = dataUrl.slice("data:image/png;base64,".length);
+const base85ImageData = base85.encode(atob(base64ImageData));
+console.log("base64.length", base64ImageData.length, "base85.length", base85ImageData.length);  // base64.length 228 base85.length 271
+console.log("[enc-dec][image]", base64ImageData === btoa(base85.decode(base85ImageData)));      // true
