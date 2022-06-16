@@ -23,7 +23,7 @@
 
 "use strict";
 
-let ascii85 = (function () {
+const ascii85 = (function () {
     const LINE_WIDTH = 80;
     const TUPLE_BITS = [24, 16, 8, 0];
     const POW_85_4 = [
@@ -56,7 +56,7 @@ let ascii85 = (function () {
     }
 
     function fromByteArray(byteArray, useEOD = true) {
-        let output = [];
+        const output = [];
         let lineCounter = 0;
 
         if (useEOD) {
@@ -65,7 +65,7 @@ let ascii85 = (function () {
         }
 
         for (let i = 0; i < byteArray.length; i += 4) {
-            let tuple = new Uint8Array(4);
+            const tuple = new Uint8Array(4);
             let bytes = 4;
 
             for (let j = 0; j < 4; j++) {
@@ -117,7 +117,7 @@ let ascii85 = (function () {
     }
 
     function getByteArrayPart(tuple, bytes = 4) {
-        let output = new Uint8Array(bytes);
+        const output = new Uint8Array(bytes);
 
         for (let i = 0; i < bytes; i++) {
             output[i] = (tuple >> TUPLE_BITS[i]) & 0x00ff;
@@ -128,14 +128,14 @@ let ascii85 = (function () {
 
     function toByteArray(text) {
         function pushPart() {
-            let part = getByteArrayPart(tuple, tupleIndex - 1);
+            const part = getByteArrayPart(tuple, tupleIndex - 1);
             for (let j = 0; j < part.length; j++) {
                 output.push(part[j]);
             }
             tuple = tupleIndex = 0;
         }
 
-        let output = [];
+        const output = [];
         let stop = false;
 
         let tuple = 0;
@@ -148,7 +148,7 @@ let ascii85 = (function () {
                 continue;
             }
 
-            let charCode = text.charCodeAt(i);
+            const charCode = text.charCodeAt(i);
 
             switch (charCode) {
                 case 0x7a: // z
